@@ -6,8 +6,8 @@ var sequelize = new Sequelize(DB_URI);
 
 const Details = DetailsModel(sequelize, Sequelize);
 
-function createDatabase(func) {
-    sequelize.authenticate()
+async function createDatabase() {
+    await sequelize.authenticate()
     .then(() => {
       console.log('Connection has been established successfully.');
     })
@@ -15,10 +15,9 @@ function createDatabase(func) {
       console.error('Unable to connect to the database:', err);
     })
 
-    sequelize.sync({ force: true })
+    await sequelize.sync({ force: true })
     .then(() => {
         console.log(`Database & tables created!`)
-        func().then(res=> console.log("Data Saved"));
     })
 }
 
