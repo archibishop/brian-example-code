@@ -25,10 +25,10 @@ async function saveBookDetailsData() {
 }
 
 function runApp() {
-    // if (process.argv.length < 3) {
-    //     console.log("Please Provide Path To Folder");
-    //     return;
-    // }
+    if (process.argv.length < 3) {
+        console.log("Please Provide Path To Folder");
+        return;
+    }
     createDatabase(saveBookDetailsData);
 }
 
